@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block head %}
+{% include "_admin_head.html" %}
+<style>
+    .header-subtitle {
+        font-style: normal;
+    }
+    .header-subtitle a {
+        color: #eee;
+        text-decoration: underline;
+    }
+    .header-subtitle a:hover {
+        color: #fff;
+        background: none;
+    }
+</style>
+{% endblock %}
+
+{% block header_title %}
+{{ data.title }}
+{% endblock %}
+
+{% block data %}
+<p class="header-date">
+    <span class="post-time">
+        <i class="demo-icon icon-calendar"></i> 发表于{{ data.datetime }}
+    </span>
+    <span class="post-category">
+        <i class="demo-icon icon-folder-empty"></i> 分类：
+        <a href="/category/{{ data.category }}">{{ data.category }}</a>
+    </span>
+</p>
+{% endblock %}
+
+{% block header_subtitle %}
+{% if data.tag %}
+{% for tag in data.tag %}
+<a href="/tag/{{tag}}"><i class="demo-icon icon-tags"></i> {{ tag }}</a>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{{ article }}
+{% endblock %}
